@@ -7,6 +7,6 @@
       name: ansible 
       state: installed
   - name: installing the git 
-    ansible.buitlin.yum: 
+    ansible.builtin.yum: 
       name: git 
       state: present 
