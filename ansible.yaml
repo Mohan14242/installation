@@ -1,12 +1,16 @@
-- name: installing the ansible and git
-  hosts: ansible 
+---
+- name: Install Ansible
+  hosts: your_target_servers
   become: yes
+
   tasks:
-  - name: installing the ansible 
-    ansible.builtin.yum:
-      name: ansible 
-      state: present
-  - name: installing the git 
-    ansible.builtin.yum: 
-      name: git 
-      state: present 
+    - name: Install Python (required for Ansible)
+      raw: yum install -y python3
+
+    - name: Install Ansible
+      raw: pip3 install ansible
+
+    - name: installing the git 
+      yum: 
+       name: git 
+       state: present 
