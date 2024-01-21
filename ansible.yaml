@@ -1,0 +1,12 @@
+- name: installing the ansible and git
+  hosts: ansible 
+  become: yes
+  tasks:
+  - name: installing the ansible 
+    ansible.builtin.yum:
+      name: ansible 
+      state: installed
+  - name: installing the git 
+    ansible.buitlin.yum: 
+      name: git 
+      state: present 

@@ -1,0 +1,20 @@
+---
+- name: Install HashiCorp Terraform and Git
+  hosts: terraform
+  become: yes
+
+  tasks:
+    - name: Add HashiCorp repository
+      command: >
+        sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+      become_user: root
+
+    - name: Install Terraform
+      yum:
+        name: terraform
+        state: present
+
+    - name: Install Git
+      yum:
+        name: git
+        state: present
