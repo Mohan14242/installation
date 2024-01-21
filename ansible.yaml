@@ -5,7 +5,7 @@
   - name: installing the ansible 
     ansible.builtin.yum:
       name: ansible 
-      state: installed
+      state: present
   - name: installing the git 
     ansible.builtin.yum: 
       name: git 
