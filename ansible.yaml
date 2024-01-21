@@ -1,16 +1,20 @@
 ---
 - name: Install Ansible
-  hosts: ansible
-  become: yes
+  hosts: ansible  # Replace with the specific hosts or groups you want to target
+  become: yes  # Elevate privileges to install packages
 
   tasks:
-    - name: Install Python (required for Ansible)
-      raw: yum install -y python3
+    - name: Install required packages
+      apt:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - python3-pip
+          - python3-setuptools
+          - libffi-dev
 
-    - name: Install Ansible
-      raw: pip3 install ansible
-
-    - name: installing the git 
-      yum: 
-       name: git 
-       state: present 
+    - name: Install Ansible via pip
+      pip:
+        name: ansible
+        executable: pip3
