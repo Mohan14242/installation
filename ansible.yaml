@@ -1,20 +1,15 @@
 ---
-- name: Install Ansible
-  hosts: ansible  # Replace with the specific hosts or groups you want to target
-  become: yes  # Elevate privileges to install packages
+- name: Install Ansible on target CentOS servers
+  hosts: ansible   # Replace with your actual target server group
+  become: yes  # Elevate privileges for package installation
 
   tasks:
-    - name: Install required packages
-      apt:
-        name: "{{ packages }}"
+    - name: Ensure EPEL repository is installed
+      yum:
+        name: epel-release
         state: present
-      vars:
-        packages:
-          - python3-pip
-          - python3-setuptools
-          - libffi-dev
 
-    - name: Install Ansible via pip
-      pip:
+    - name: Install Ansible package
+      yum:
         name: ansible
-        executable: pip3
+        state: latest
