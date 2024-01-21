@@ -1,6 +1,6 @@
 ---
 - name: Install Ansible
-  hosts: your_target_servers
+  hosts: ansible
   become: yes
 
   tasks:
